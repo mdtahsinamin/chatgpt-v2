@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./Pages/Login/Login";
+import Register from "./Pages/Register/Register";
+import ChatGPT from "./Pages/ChatGPT/ChatGPT";
+import Home from "./Pages/Home/Home";
+import PrivateRoute from "./Routes/PrivateRoute/PrivateRoute";
+import MainGPT from "./Pages/ChatGPT/MainGPT";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/auth/login" element={<Login />}></Route>
+        <Route path="/auth/register" element={<Register />}></Route>
+        <Route
+          path="/chatgpt"
+          element={
+            <PrivateRoute>
+              <MainGPT />
+            </PrivateRoute>
+          }
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

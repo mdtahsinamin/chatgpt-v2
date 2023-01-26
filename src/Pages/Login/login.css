@@ -1,0 +1,38 @@
+.link{
+    text-decoration: none;
+    color: teal;
+    margin-left: 1px;
+}
+.span-login{
+    font-size: 1rem;
+}
+.logo-section{
+    margin-bottom: 2rem;
+}
+
+  .hr {
+      text-transform: uppercase;
+      color: black;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+  }
+  .hr:before {
+          border-top: 2px solid rgba(51, 153, 219, 0.1);
+          content:"";
+          margin: 0 auto;
+          position: absolute;
+          top: 50%; left: 0; right: 0; bottom: 0;
+          width: 95%;
+          z-index: -1;
+      }
+  
+    
+.or-section { 
+    background: #fff; 
+    padding: 0 10px; 
+}
+.google-login{
+    margin: 7px 8px 5px 0px;
+    font-size: 20px;
+}
