@@ -12,9 +12,12 @@ const ChatGPT = () => {
   const sendMessage = async (e) => {
     e.preventDefault();
 
-    const { data } = await axios.post("http://localhost:5000/message", {
-      message: message,
-    });
+    const { data } = await axios.post(
+      "https://chatgpt-backend-beryl.vercel.app/message",
+      {
+        message: message,
+      }
+    );
     setMessages([...messages, message, data.message]);
 
     setMessage("");
