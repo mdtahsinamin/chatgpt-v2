@@ -64,17 +64,19 @@ const Home = () => {
             </Link>
           </div>
         )}
-        <div>
-          <Link to="/chatgpt" className="link">
-            <Button
-              variant="contained"
-              color="secondary"
-              className="dark:text-white"
-            >
-              Jump into Chatbot
-            </Button>
-          </Link>
-        </div>
+        {user && (
+          <div>
+            <Link to="/chatgpt" className="link">
+              <Button
+                variant="contained"
+                color="secondary"
+                className="dark:text-white"
+              >
+                Jump into Chatbot
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </ThemeProvider>
   );
