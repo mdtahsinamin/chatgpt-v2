@@ -4,24 +4,33 @@ import app from "./../../firebase/firebase.config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Avatar } from "@mui/material";
 import "./ChatBox.css";
-import chatBot from "../../asset/chatgpt.png";
+import chatBot from "../../asset/chatgpt-2.png";
 const auth = getAuth(app);
-const ChatBox = ({ message, id }) => {
+const ChatBox = ({ message }) => {
   const [user, loading, error] = useAuthState(auth);
-  let messageId = "";
-  let photoURL = "";
-
-  id % 2 == 0 ? (messageId = "sent") : (messageId = "received");
-  id % 2 == 0 ? (photoURL = user.photoURL) : (photoURL = chatBot);
+  let url = "";
+  message.user === "gpt" ? (url = chatBot) : (url = user.photoURL);
 
   return (
     <>
-      <div className={`message ${messageId}`}>
-        <Avatar alt="Remy Sharp" src={photoURL} className="chat-img" />
-        <p className="chat-p">{message}</p>
+      <div className={`chat-message ${message.user === "gpt" && "chatgpt"}`}>
+        <div className="chat-message-center">
+          <div className={`avatar ${message.user === "gpt" && "chatgpt"}`}>
+            <Avatar alt="Remy Sharp" src={url} className="chat-img" />
+          </div>
+          <div className="message">{message.message}</div>
+        </div>
       </div>
     </>
   );
 };
 
 export default ChatBox;
+
+/*
+<div className={`message ${messageId}`}>
+        <Avatar alt="Remy Sharp" src={photoURL} className="chat-img" />
+        <p className="chat-p">{message}</p>
+      </div>
+
+*/

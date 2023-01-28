@@ -1,32 +1,66 @@
 import React, { useEffect, useRef, useState } from "react";
-import ChatBox from "../../components/ChatBox/ChatBox";
 import "./ChatGPT.css";
 import axios from "axios";
-import ChatSet from "./../../components/ChatBox/ChatSet";
+import ChatBox from "./../../components/ChatBox/ChatBox";
+
 const ChatGPT = () => {
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [bot, setBot] = useState([]);
+  const [input, setInput] = useState("");
+  const [chatLog, setChatLog] = useState([]);
   const dummy = useRef();
 
-  const sendMessage = async (e) => {
-    e.preventDefault();
+  function clearChat() {
+    setChatLog([]);
+  }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+    let chatLogNew = [...chatLog, { user: "me", message: `${input}` }];
+    setInput("");
+    await setChatLog(chatLogNew);
+
+    const messages = chatLogNew.map((message) => message.message).join("\n");
+
+    // fetch
     const { data } = await axios.post(
       "https://chatgpt-backend-beryl.vercel.app/message",
       {
-        message: message,
+        message: messages,
       }
     );
-    setMessages([...messages, message, data.message]);
 
-    setMessage("");
+    // sent messages server
+    await setChatLog([
+      ...chatLogNew,
+      { user: "gpt", message: `${data.message}` },
+    ]);
     dummy.current.scrollIntoView({ behavior: "smooth" });
-  };
+  }
 
   return (
     <>
-      <main className="main-section">
+      <div className="chat-log">
+        {chatLog &&
+          chatLog.map((message, index) => <ChatBox message={message} />)}
+        <span ref={dummy}></span>
+      </div>
+      <div className="chat-input-holder">
+        <form onSubmit={handleSubmit}>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            rows="1"
+            className="chat-input-textarea"
+          ></input>
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default ChatGPT;
+/*
+
+<main className="main-section">
         {messages &&
           messages.map((msg, index) => (
             <ChatBox key={index} message={msg} id={index} />
@@ -45,8 +79,21 @@ const ChatGPT = () => {
           🕊️ Send
         </button>
       </form>
-    </>
-  );
-};
 
-export default ChatGPT;
+
+       const sendMessage = async (e) => {
+    e.preventDefault();
+
+    const { data } = await axios.post(
+      "https://chatgpt-backend-beryl.vercel.app/message",
+      {
+        message: message,
+      }
+    );
+    setMessages([...messages, message, data.message]);
+
+    setMessage("");
+    dummy.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+*/

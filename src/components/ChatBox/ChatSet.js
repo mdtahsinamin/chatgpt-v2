@@ -6,9 +6,9 @@ import chatBot from "../../asset/chatgpt.png";
 const ChatSet = ({ message }) => {
   return (
     <>
-      <div className="message sent">
+      <div className="message received">
         <Avatar alt="Remy Sharp" src={chatBot} className="chat-img" />
-        <p className="chat-p">{message.bot}</p>
+        <p className="chat-p">{message}</p>
       </div>
     </>
   );

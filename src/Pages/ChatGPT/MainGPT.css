@@ -1,0 +1,18 @@
+.App1 {
+    text-align: center;
+    display: flex;
+    --tw-bg-opacity: 1;
+    background-color: rgb(75 85 99/var(--tw-bg-opacity));
+    color: white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+  .chatBox{
+    flex: 1;
+    background-color: #343541;
+    position: relative;
+  
+  }
