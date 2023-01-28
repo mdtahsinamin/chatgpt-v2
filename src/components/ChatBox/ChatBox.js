@@ -18,7 +18,9 @@ const ChatBox = ({ message }) => {
           <div className={`avatar ${message.user === "gpt" && "chatgpt"}`}>
             <Avatar alt="Remy Sharp" src={url} className="chat-img" />
           </div>
-          <div className="message">{message.message}</div>
+          <div className={`message ${message.user === "gpt" && "typewriter"}`}>
+            {message.message}
+          </div>
         </div>
       </div>
     </>
@@ -28,9 +30,18 @@ const ChatBox = ({ message }) => {
 export default ChatBox;
 
 /*
+typewriter
 <div className={`message ${messageId}`}>
         <Avatar alt="Remy Sharp" src={photoURL} className="chat-img" />
         <p className="chat-p">{message}</p>
       </div>
 
+
+       <div
+            className={`${
+              message.user === "gpt" && "typewriter anim-typewriter"
+            }`}
+          >
+            
+          </div>
 */

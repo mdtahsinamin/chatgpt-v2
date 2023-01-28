@@ -1,42 +1,18 @@
- ul, li {
-    text-align: left;
-    list-style: none;
-  }
-  
-  .chat-p{
-    max-width: 500px;
-    margin-bottom: 12px;
-    line-height: 24px;
-    padding: 10px 20px;
-    border-radius: 25px;
-    position: relative;
-    color: white;
-    text-align: center;
-  }
-  
-  .message {
-    display: flex;
-    align-items: center;
-  }
-  
-  
-  .sent {
-    flex-direction: row-reverse;
-  }
-  
-  .sent p {
-    color: white;
-    background: #0b93f6;
-    align-self: flex-end;
-  }
-  .received p {
-    background: #e5e5ea;
-    color: black;
-  }
-  
-  .chat-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 2px 5px;
-  }
+
+.chat-message.chatgpt{
+  background-color: #444654;
+}
+.chat-message-center{
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px;
+  display: flex;
+  padding-left:24px;
+  padding-right:24px;
+}
+.message{
+  padding-left:24px;
+  padding-right:24px;
+
+}
